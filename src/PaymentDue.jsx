@@ -12,7 +12,7 @@ class PaymentDue extends React.Component {
       totalPaid: 0,
       minimumDue: 0,
       loanLeft: 0,
-      totalPayments: 0,
+      paidAll: 0,
       loanFree: false,
     };
   }
@@ -24,50 +24,53 @@ class PaymentDue extends React.Component {
   onClick = () => {
     this.calcTotal();
 
-    if (this.state.input.toFixed(2) === this.state.totalPayments) {
+    if (this.state.input.toFixed(2) === this.state.paidAll) {
       this.freeDebtMessage();
-    } else if (this.state.input > this.state.totalPayments) {
-      alert(`Your payment cannot be greater than the amount owe`);
-    } else if (this.state.input >= this.state.loanLeft) {
-      alert(`Your payment cannot be greater than your Remaining Debt. 
-            If you want to payoff your entire loan, you must pay off Remaining Debt + Interest + a 1% Principal Payment.Current Payoff Total: $${this.state.totalPayments} `);
+    } else if (this.state.input > this.state.paidAll) {
+      alert(
+        ` We have noticed that the payment amount entered is greater than the loan amount. This input is not valid as it is not possible to pay more than what is owed.`
+      );
     } else if (this.state.input >= this.state.minimumDue.toFixed(2)) {
-      this.createLi();
+      this.paymentsHistory();
       this.updatePay();
       this.component.current.computeData();
     } else {
       alert(
-        `Payments must be greater than or equal to ${this.state.minimumDue.toFixed(
+        `Please enter a payment amount that is equal to or greater than the minimum monthly due. ${this.state.minimumDue.toFixed(
           2
         )}`
       );
     }
   };
 
-  createLi = () => {
-    let newItem = {
-      label: this.state.input,
-      id: Date.now(),
-    };
-
+  paymentsHistory = () => {
     this.setState((prevState) => ({
-      history: [...prevState.history, newItem],
+      history: [
+        ...prevState.history,
+        {
+          paymentNumber: prevState.history.length + 1,
+          id: Date.now(),
+          label: this.state.input,
+          totalPaid: this.state.totalPaid,
+          balance: this.state.loanLeft,
+        },
+      ],
     }));
   };
 
   updatePay = () => {
     this.setState({ totalPaid: this.state.totalPaid + this.state.input });
   };
-  getData = (minimumPay, debt, totalPayments) => {
+  getData = (minimumPay, debt, paidAll) => {
     this.setState({
       minimumDue: minimumPay,
       loanLeft: debt.toFixed(2),
-      totalPayments: totalPayments.toFixed(2),
+      paidAll: paidAll.toFixed(2),
     });
   };
   calcTotal = () => {
     let calcTotal = this.state.loanLeft * 1 + this.state.minimumDue * 1;
-    this.setState({ totalPayments: calcTotal.toFixed(2) });
+    this.setState({ paidAll: calcTotal.toFixed(2) });
   };
   freeDebtMessage = () => {
     this.setState({ loanFree: true });
@@ -80,26 +83,30 @@ class PaymentDue extends React.Component {
       totalPaid: 0,
       minimumDue: 0,
       loanLeft: 0,
-      totalPayments: 0,
+      paidAll: 0,
       loanFree: false,
     });
 
     this.component.current.reset();
   };
   render() {
-    let { history, totalPaid, input, minimumDue, loanLeft, totalPayments } = this.state;
+    let { history, totalPaid, input, minimumDue, loanLeft, paidAll } =
+      this.state;
 
-    const modalVisible = this.state.loanFree ? "is-visible" : "";
+    const loanFreeMessage = this.state.loanFree ? "is-visible" : "";
 
     return (
       <header className="App-header">
-        <div className={`modal ${modalVisible}`}>
+        <div className={`modal ${loanFreeMessage}`}>
           <h1>
-            Congratulations! <br />
-            Your Loan is Paid Off!
+            Dear User, Congratulations! Based on the information provided, it
+            appears that your loan has been fully paid off. Thank you for using
+            our debt calculator to track your loan progress. If you have any
+            questions or need further assistance, please do not hesitate to
+            contact us. Best regards, The Debt Calculator Team
           </h1>
           <button class="button" onClick={this.reset}>
-            Reset
+            Start a New Loan
           </button>
         </div>
         <div className="pay container">
@@ -114,16 +121,24 @@ class PaymentDue extends React.Component {
             onChange={this.handleChange}
           />
           <button className="button" onClick={this.onClick}>
-            Log Payment
+            Make a Payment
           </button>
-          <div className="subtext">Minimum Payment : {minimumDue.toFixed(2)}</div>
-          <div className="subtext">Total Debt : {totalPayments}</div>
-          <h3>Log</h3>
-          <ul className="log">
-            {history.map((item) => (
-              <li key={item.id}>${item.label}</li>
-            ))}
-          </ul>
+          <div className="text-payments">
+            Minimum Monthly Payment : {minimumDue.toFixed(2)}
+          </div>
+          <div className="text-payments"> New Loan: {paidAll}</div>
+          <h3>Payments Report</h3>
+            <tbody>
+              {history.map((payment, index) => (
+                <tr key={index}>
+                  <td>{payment.paymentNumber}</td>
+                  <td>{payment.id}</td>
+                  <td>{payment.label}</td>
+                  <td>{payment.totalPaid}</td>
+                  <td>{payment.balance}</td>
+                </tr>
+              ))}
+            </tbody>
           <h5>Total Amount Paid:</h5>
           <span className="number-left">{totalPaid.toFixed(2)}</span>
         </div>
