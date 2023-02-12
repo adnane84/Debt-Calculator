@@ -127,7 +127,8 @@ class PaymentDue extends React.Component {
             Minimum Monthly Payment : {minimumDue.toFixed(2)}
           </div>
           <div className="text-payments"> New Loan: {paidAll}</div>
-          <h3>Payments Report</h3>
+         <div className="history container">
+         <h3>Payments Report</h3>
             <tbody>
               {history.map((payment, index) => (
                 <tr key={index}>
@@ -141,6 +142,7 @@ class PaymentDue extends React.Component {
             </tbody>
           <h5>Total Amount Paid:</h5>
           <span className="number-left">{totalPaid.toFixed(2)}</span>
+         </div>
         </div>
         <Entries ref={this.component} payment={input} getData={this.getData} />
       </header>
