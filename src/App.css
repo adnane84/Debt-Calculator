@@ -436,4 +436,32 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 14px;
   line-height: 1.42857;
+  margin: 0;
+  box-sizing: border-box;
 }
+
+.header {
+background: #27304c;
+color: white;
+margin: 0;
+padding: 15px;
+text-align: center;
+text-transform: uppercase;
+font-size: 26px;
+font-family: 'Raleway', sans-serif;
+font-weight: 500;
+}
+
+
+.container {
+  margin: 60px 20px 20px 20px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+  background: #27304C;
+  height: 400px;
+}
+
+
+
