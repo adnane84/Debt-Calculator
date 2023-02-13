@@ -140,19 +140,19 @@ class Entries extends React.Component {
         <div className="loan-container container">
           <div className="data">
             <div>
-              <h4>Loan Balance: </h4>
+              <h4 className="title">Loan Balance: </h4>
               <h5>Original Debt minus principal paid</h5>
               <span className="digits-output">${debtLeft.toFixed(2)}</span>
-              <h4>My monthly payment is: </h4>
+              <h4 className="title">My monthly payment is: </h4>
               <h5>Monthly interest plus 1% payment on principal</h5>
               <h5>
                 <h6>
                   My interest rate is per month:{" "}
-                  <span> ${this.state.monthlyInterest.toFixed(2)}</span>
+                  <span className="Interest"> ${this.state.monthlyInterest.toFixed(2)}</span>
                 </h6>
               </h5>
               <span className="digits-output">${minimumDue.toFixed(2)}</span>
-              <h4>Number of Payments Left:</h4>
+              <h4 className="title">Number of Payments Left:</h4>
               <h5>Based on last monthly payment</h5>
               <span className="digits-output">{paymentsLeft.toFixed(1)}</span>
             </div>
