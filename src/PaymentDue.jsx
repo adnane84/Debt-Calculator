@@ -110,39 +110,43 @@ class PaymentDue extends React.Component {
           </button>
         </div>
         <div className="pay container">
-          <h3>Payments</h3>
+          <h3 className="title">Payments</h3>
           <input
             type="number"
             step="0.01"
             min={minimumDue.toFixed(2)}
             max={loanLeft}
             value={input}
-            placeholder="90"
+            placeholder="$ 00.0"
             onChange={this.handleChange}
           />
           <button className="button" onClick={this.onClick}>
             Make a Payment
           </button>
-          <div className="text-payments">
-            Minimum Monthly Payment : {minimumDue.toFixed(2)}
+          <div className="title">
+            Minimum Monthly Payment :{" "}
+            <span className="digits">$ {minimumDue.toFixed(2)}</span>
           </div>
-          <div className="text-payments"> New Loan: {paidAll}</div>
-         <div className="history container">
-         <h3>Payments Report</h3>
-            <tbody>
-              {history.map((payment, index) => (
-                <tr key={index}>
-                  <td>{payment.paymentNumber}</td>
-                  <td>{payment.id}</td>
-                  <td>{payment.label}</td>
-                  <td>{payment.totalPaid}</td>
-                  <td>{payment.balance}</td>
-                </tr>
-              ))}
-            </tbody>
-          <h5>Total Amount Paid:</h5>
-          <span className="number-left">{totalPaid.toFixed(2)}</span>
-         </div>
+          <div className="text-payments">
+            {" "}
+            New Loan: <span className="digits">$ {paidAll}</span>
+          </div>
+        </div>
+        <div className="history container">
+          <h3 className="title">Payments Report</h3>
+          <tbody>
+            {history.map((payment, index) => (
+              <tr key={index}>
+                <td>{payment.paymentNumber}</td>
+                <td>{payment.id}</td>
+                <td>{payment.label}</td>
+                <td>{payment.totalPaid}</td>
+                <td>{payment.balance}</td>
+              </tr>
+            ))}
+          </tbody>
+          <h5 className="title">Total Amount Paid:</h5>
+          <span className="digits">$ {totalPaid.toFixed(2)}</span>
         </div>
         <Entries ref={this.component} payment={input} getData={this.getData} />
       </header>

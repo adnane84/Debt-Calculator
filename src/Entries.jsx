@@ -95,7 +95,7 @@ class Entries extends React.Component {
         value: initialDebt,
         step: "500",
         onChange: this.handleChange,
-        className: "slider",
+        className: "range-style",
         id: "debtRange",
       },
       {
@@ -108,7 +108,7 @@ class Entries extends React.Component {
         value: initialInterest,
         step: "0.1",
         onChange: this.handleChange,
-        className: "slider",
+        className: "range-style",
         id: "interestRange",
       },
     ];
@@ -117,7 +117,7 @@ class Entries extends React.Component {
         <div className="inputs container">
           {inputData.map((item) => (
             <div>
-              <h2>{item.header}</h2>
+              <h2 className="title">{item.header}</h2>
               <div className="total">{item.label}</div>
               <input
                 name={item.name}
@@ -137,25 +137,28 @@ class Entries extends React.Component {
             Calculate
           </button>
         </div>
-        <div className="loan-container container">
-          <div className="data">
-            <div>
-              <h4 className="title">Loan Balance: </h4>
-              <h5>Original Debt minus principal paid</h5>
-              <span className="digits-output">${debtLeft.toFixed(2)}</span>
-              <h4 className="title">My monthly payment is: </h4>
-              <h5>Monthly interest plus 1% payment on principal</h5>
-              <h5>
-                <h6>
-                  My interest rate is per month:{" "}
-                  <span className="Interest"> ${this.state.monthlyInterest.toFixed(2)}</span>
-                </h6>
-              </h5>
-              <span className="digits-output">${minimumDue.toFixed(2)}</span>
-              <h4 className="title">Number of Payments Left:</h4>
-              <h5>Based on last monthly payment</h5>
-              <span className="digits-output">{paymentsLeft.toFixed(1)}</span>
-            </div>
+        <div className="loan-infos container">
+          <div>
+            <h4 className="title">Loan Balance: </h4>
+            <h5 className="info">Original Debt minus principal paid</h5>
+            <span className="digits">${debtLeft.toFixed(2)}</span>
+            <hr />
+            <h4 className="title">My monthly payment is: </h4>
+            <h5 className="info">
+              Monthly interest plus 1% payment on principal
+            </h5>
+            <h5 className="info">
+              My interest rate is per month:{" "}
+              <span className="digits">
+                {" "}
+                ${this.state.monthlyInterest.toFixed(2)}
+              </span>
+            </h5>
+            <hr />
+            <span className="digits">${minimumDue.toFixed(2)}</span>
+            <h4 className="title">Number of Payments Left:</h4>
+            <h5 className="info">Based on last monthly payment</h5>
+            <span className="digits">{paymentsLeft.toFixed(1)}</span>
           </div>
         </div>
       </div>
