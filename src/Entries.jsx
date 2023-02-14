@@ -113,7 +113,7 @@ class Entries extends React.Component {
       },
     ];
     return (
-      <div>
+      <div className="main-container">
         <div className="inputs container">
           {inputData.map((item) => (
             <div>

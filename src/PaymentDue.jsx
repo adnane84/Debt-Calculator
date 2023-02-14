@@ -23,7 +23,6 @@ class PaymentDue extends React.Component {
 
   onClick = () => {
     this.calcTotal();
-
     if (this.state.input.toFixed(2) === this.state.paidAll) {
       this.freeDebtMessage();
     } else if (this.state.input > this.state.paidAll) {
@@ -97,6 +96,8 @@ class PaymentDue extends React.Component {
 
     return (
       <header className="App-header">
+        <Entries ref={this.component} payment={input} getData={this.getData} />
+        
         <div className={`modal ${loanFreeMessage}`}>
           <h1>
             Dear User, Congratulations! Based on the information provided, it
@@ -109,6 +110,7 @@ class PaymentDue extends React.Component {
             Start a New Loan
           </button>
         </div>
+        <div className="main-container">
         <div className="pay container">
           <h3 className="title">Payments</h3>
           <input
@@ -148,7 +150,9 @@ class PaymentDue extends React.Component {
           <h5 className="title">Total Amount Paid:</h5>
           <span className="digits">$ {totalPaid.toFixed(2)}</span>
         </div>
-        <Entries ref={this.component} payment={input} getData={this.getData} />
+        </div>
+        
+        
       </header>
     );
   }
