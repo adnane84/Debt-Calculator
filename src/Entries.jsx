@@ -117,8 +117,8 @@ class Entries extends React.Component {
         <div className="inputs container">
           {inputData.map((item) => (
             <div>
-              <h2 className="title">{item.header}</h2>
-              <div className="total">{item.label}</div>
+              <h2 className="loan-slider">{item.header}</h2>
+              <div className="total digits">{item.label}</div>
               <input
                 name={item.name}
                 type={item.type}

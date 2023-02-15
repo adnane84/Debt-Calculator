@@ -99,12 +99,12 @@ class PaymentDue extends React.Component {
         <Entries ref={this.component} payment={input} getData={this.getData} />
         
         <div className={`modal ${loanFreeMessage}`}>
-          <h1>
+          <h1 className="free-loan">
             Dear User, Congratulations! Based on the information provided, it
             appears that your loan has been fully paid off. Thank you for using
             our debt calculator to track your loan progress. If you have any
             questions or need further assistance, please do not hesitate to
-            contact us. Best regards, The Debt Calculator Team
+            contact us. <br /> Best regards, The Debt Calculator Team.
           </h1>
           <button class="button" onClick={this.reset}>
             Start a New Loan
@@ -114,6 +114,7 @@ class PaymentDue extends React.Component {
         <div className="pay container">
           <h3 className="title">Payments</h3>
           <input
+            className="input"
             type="number"
             step="0.01"
             min={minimumDue.toFixed(2)}
@@ -136,11 +137,10 @@ class PaymentDue extends React.Component {
         </div>
         <div className="history container">
           <h3 className="title">Payments Report</h3>
-          <tbody>
+          <tbody className="payments-history">
             {history.map((payment, index) => (
               <tr key={index}>
                 <td>{payment.paymentNumber}</td>
-                <td>{payment.id}</td>
                 <td>{payment.label}</td>
                 <td>{payment.totalPaid}</td>
                 <td>{payment.balance}</td>
