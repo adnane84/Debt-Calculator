@@ -1,3 +1,13 @@
+body {
+  margin: 0;
+  background-image: url(./images/background.jpg);
+  text-align: center;
+  height: 140vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
 .modal {
   position: fixed;
   width: 70%;
@@ -28,17 +38,6 @@
   word-spacing: 2px;
   line-height: 35px;
   margin-bottom: 50px;
-}
-
-
-body {
-  margin: 0;
-  background-image: url(./images/background.jpg);
-  text-align: center;
-  height: 120vh;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
 }
 
 .header-title {
@@ -206,7 +205,7 @@ width: 70%;
 
 td {
   width: 28%;
-  color: #131d29;
+  color: #65656a;
   padding: 10px;
 }
 
@@ -222,6 +221,8 @@ tbody {
   overflow-y: auto;
   overflow-x: hidden;
   background-color: rgb(213, 222, 231);
+  border: 1px solid #65656a;
+  border-radius: 5px;
 }
 
 
