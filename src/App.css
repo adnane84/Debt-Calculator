@@ -206,8 +206,23 @@ width: 70%;
 
 td {
   width: 28%;
+  color: #131d29;
+  padding: 10px;
 }
 
+table {
+  width: 716px; /* 140px * 5 column + 16px scrollbar width */
+  border-spacing: 0;
+}
+
+tbody, thead tr { display: block; }
+
+tbody {
+  height: 300px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background-color: rgb(213, 222, 231);
+}
 
 
 
