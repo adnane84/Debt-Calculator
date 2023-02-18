@@ -24,9 +24,9 @@ body {
   padding: 20px;
   border-radius: 20px;
   transition: 0.3s ease;
-  color: #40719a;
+  color: rgb(64, 113, 154);
   margin-left: 10%;
-  background-color: #fff;
+  background-color: rgb(255, 255, 255);
 }
 
 .modal.is-visible {
@@ -38,7 +38,7 @@ body {
   font-weight: 300;
   text-align: center;
   font-size: 20px;
-  font-family: 'Merriweather', serif;
+  font-family: "Merriweather", serif;
   word-spacing: 2px;
   line-height: 35px;
   margin-bottom: 50px;
@@ -97,7 +97,7 @@ body {
 }
 
 .digits {
-  color: #40719a;
+  color: rgb(64, 113, 154);
   font-weight: bold;
   font-size: 2rem;
   margin-right: 0.5rem;
@@ -117,24 +117,24 @@ body {
   font-weight: 500;
   font-family: inherit;
   border-radius: 6px;
-  color: #131d29;
-  border: 1px solid #65656a;
+  color: rgb(19, 29, 41);
+  border: 1px solid rgb(101, 101, 106);
   background: D6D6E7;
   transition: border 0.3s ease;
   box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px,
-    rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #d6d6e7 0 -3px 0 inset;
+    rgba(45, 35, 66, 0.3) 0 7px 13px -3px, rgb(214, 214, 231) 0 -3px 0 inset;
 }
 
 .button {
   align-items: center;
   appearance: none;
-  background-color: #65656a;
+  background-color: rgb(101, 101, 106);
   border-radius: 4px;
   border-width: 0;
   box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,
-    rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #d6d6e7 0 -3px 0 inset;
+    rgba(45, 35, 66, 0.3) 0 7px 13px -3px, rgb(214, 214, 231) 0 -3px 0 inset;
   box-sizing: border-box;
-  color: #d5d6dc;
+  color: rgb(213, 214, 220);
   cursor: pointer;
   display: inline-flex;
   font-family: "JetBrains Mono", monospace;
@@ -157,21 +157,21 @@ body {
 }
 
 .button:focus {
-  box-shadow: #939397 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px,
-    rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #d6d6e7 0 -3px 0 inset;
+  box-shadow: rgb(147, 147, 151) 0 0 0 1.5px inset,
+    rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px,
+    rgb(214, 214, 231) 0 -3px 0 inset;
 }
 
 .button:hover {
   box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px,
-    rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #d6d6e7 0 -3px 0 inset;
+    rgba(45, 35, 66, 0.3) 0 7px 13px -3px, rgb(214, 214, 231) 0 -3px 0 inset;
   transform: translateY(-2px);
 }
 
 .button:active {
-  box-shadow: #65656a 0 3px 7px inset;
+  box-shadow: rgb(101, 101, 106) 0 3px 7px inset;
   transform: translateY(2px);
 }
-
 
 .loan-slider {
   box-sizing: border-box;
@@ -202,23 +202,23 @@ body {
 }
 
 .payments-history {
-gap: 20px;
-border-collapse: collapse;
-box-sizing: border-box;
-color: rgb(213, 222, 231);
-font-family: "Poppins", Arial, sans-serif;
-font-size: 16px;
-font-weight: 400;
-line-height: 28.8px;
-text-align: left;
-width: 70%;
+  gap: 20px;
+  border-collapse: collapse;
+  box-sizing: border-box;
+  color: rgb(213, 222, 231);
+  font-family: "Poppins", Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 28.8px;
+  text-align: left;
+  width: 70%;
 }
 
 /*******   Table History Payments *******/
 
 td {
   width: 28%;
-  color: #65656a;
+  color: rgb(101, 101, 106);
   padding: 10px;
 }
 
@@ -227,14 +227,16 @@ table {
   border-spacing: 0;
 }
 
-tbody, thead tr { display: block; }
+tbody,
+thead tr {
+  display: block;
+}
 
 tbody {
   height: 300px;
   overflow-y: auto;
   overflow-x: hidden;
   background-color: rgb(213, 222, 231);
-  border: 1px solid #65656a;
+  border: 1px solid rgb(101, 101, 106);
   border-radius: 5px;
 }
-
