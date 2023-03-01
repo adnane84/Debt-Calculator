@@ -14,7 +14,7 @@ class Entries extends React.Component {
   }
 
   handleChange = (e) => {
-    this.setState({ [`${e.target.name}`]: e.target.value });
+    this.setState({[`${e.target.name}`]: e.target.value });
   };
 
   captureData = () => {
@@ -39,7 +39,7 @@ class Entries extends React.Component {
       const { payment } = this.props;
 
       let monthlyIntPay = (initialInterest / 100 / 12) * debtLeft;
-      let newMinPay = monthlyIntPay + debtLeft * 0.01;
+      let newMinPay = monthlyIntPay + (debtLeft - payment) * 0.01;
       let principlePaid = payment - monthlyIntPay;
       let newDebt = debtLeft - principlePaid;
       let totalPayoff = newMinPay + newDebt;
@@ -145,14 +145,14 @@ class Entries extends React.Component {
             <hr />
             <h4 className="title">My monthly payment is: </h4>
             <h5 className="info">
-              Monthly interest plus 1% payment on principal
-            </h5>
-            <h5 className="info">
               My interest rate is per month:{" "}
-              <span className="digits">
+              <span className="interest">
                 {" "}
                 ${this.state.monthlyInterest.toFixed(2)}
               </span>
+            </h5>
+            <h5 className="info">
+              Monthly interest plus 1% payment on principal
             </h5>
             <hr />
             <span className="digits">${minimumDue.toFixed(2)}</span>

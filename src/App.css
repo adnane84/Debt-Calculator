@@ -108,6 +108,13 @@ body {
   margin-left: 20px;
 }
 
+.interest {
+  color: rgb(64, 113, 154);
+  font-weight: bold;
+  font-size: 1.3rem;
+  margin-left: 10px;
+}
+
 .input {
   display: block;
   width: 30%;
@@ -212,6 +219,13 @@ body {
   line-height: 28.8px;
   text-align: left;
   width: 70%;
+}
+
+.payment-left {
+  font-family: "Poppins", sans-serif;
+  color: rgb(213, 222, 231);
+  font-size: 24px;
+  margin-top: 40px;
 }
 
 /*******   Table History Payments *******/

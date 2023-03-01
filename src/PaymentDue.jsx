@@ -1,6 +1,16 @@
 import React from "react";
 import Entries from "./Entries";
 
+const INIT_STATE = {
+  input: 0,
+  history: [],
+  totalPaid: 0,
+  minimumDue: 0,
+  loanLeft: 0,
+  paidAll: 0,
+  loanFree: false,
+};
+
 class PaymentDue extends React.Component {
   constructor(props) {
     super(props);
@@ -25,6 +35,10 @@ class PaymentDue extends React.Component {
     this.calcTotal();
     if (this.state.input.toFixed(2) === this.state.paidAll) {
       this.freeDebtMessage();
+    } else if (this.state.input >= this.state.paidAll - this.state.minimumDue) {
+      alert(`Your payment is not enough to pay off the loan. To become loan-free,
+       you will need to pay off the remaining principal and interest on your account. 
+      Please contact us for more information on how to do so.`);
     } else if (this.state.input > this.state.paidAll) {
       alert(
         ` We have noticed that the payment amount entered is greater than the loan amount. This input is not valid as it is not possible to pay more than what is owed.`
@@ -76,15 +90,7 @@ class PaymentDue extends React.Component {
   };
 
   reset = () => {
-    this.setState({
-      input: 0,
-      history: [],
-      totalPaid: 0,
-      minimumDue: 0,
-      loanLeft: 0,
-      paidAll: 0,
-      loanFree: false,
-    });
+    this.setState(INIT_STATE);
 
     this.component.current.reset();
   };
@@ -97,7 +103,7 @@ class PaymentDue extends React.Component {
     return (
       <header className="App-header">
         <Entries ref={this.component} payment={input} getData={this.getData} />
-        
+
         <div className={`modal ${loanFreeMessage}`}>
           <h1 className="free-loan">
             Dear User, Congratulations! Based on the information provided, it
@@ -111,48 +117,48 @@ class PaymentDue extends React.Component {
           </button>
         </div>
         <div className="main-container">
-        <div className="pay container">
-          <h3 className="title">Payments</h3>
-          <input
-            className="input"
-            type="number"
-            step="0.01"
-            min={minimumDue.toFixed(2)}
-            max={loanLeft}
-            value={input}
-            placeholder="$ 00.0"
-            onChange={this.handleChange}
-          />
-          <button className="button" onClick={this.onClick}>
-            Make a Payment
-          </button>
-          <div className="title">
-            Minimum Monthly Payment :{" "}
-            <span className="digits">$ {minimumDue.toFixed(2)}</span>
+          <div className="pay container">
+            <h3 className="title">Payments</h3>
+            <input
+              className="input"
+              type="number"
+              step="0.01"
+              min={minimumDue.toFixed(2)}
+              max={loanLeft}
+              value={input}
+              placeholder="$ 00.0"
+              onChange={this.handleChange}
+            />
+            <button className="button" onClick={this.onClick}>
+              Make a Payment
+            </button>
+            <div className="title">
+              Minimum Monthly Payment :{" "}
+              <span className="digits">$ {minimumDue.toFixed(2)}</span>
+            </div>
+            <div className="text-payments payment-left">
+              {" "}
+              Loan Left: <span className="digits">$ {paidAll}</span>
+            </div>
           </div>
-          <div className="text-payments">
-            {" "}
-            New Loan: <span className="digits">$ {paidAll}</span>
+          <div className="history container">
+            <h3 className="title">Payments Report</h3>
+            <tbody className="payments-history">
+              {history.map((payment, index) => {
+                const { paymentNumber, label, totalPaid, balance } = payment;
+                return (
+                  <tr key={index}>
+                    {[paymentNumber, label, totalPaid, balance].map((val) => (
+                      <td>{val}</td>
+                    ))}
+                  </tr>
+                );
+              })}
+            </tbody>
+            <h5 className="title">Total Amount Paid:</h5>
+            <span className="digits">$ {totalPaid.toFixed(2)}</span>
           </div>
         </div>
-        <div className="history container">
-          <h3 className="title">Payments Report</h3>
-          <tbody className="payments-history">
-            {history.map((payment, index) => (
-              <tr key={index}>
-                <td>{payment.paymentNumber}</td>
-                <td>{payment.label}</td>
-                <td>{payment.totalPaid}</td>
-                <td>{payment.balance}</td>
-              </tr>
-            ))}
-          </tbody>
-          <h5 className="title">Total Amount Paid:</h5>
-          <span className="digits">$ {totalPaid.toFixed(2)}</span>
-        </div>
-        </div>
-        
-        
       </header>
     );
   }
