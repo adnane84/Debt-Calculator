@@ -143,7 +143,6 @@ class Entries extends React.Component {
             <h5 className="info">Original Debt minus principal paid</h5>
             <span className="digits">${debtLeft.toFixed(2)}</span>
             <hr />
-            <h4 className="title">My monthly payment is: </h4>
             <h5 className="info">
               My interest rate is per month:{" "}
               <span className="interest">
@@ -154,6 +153,7 @@ class Entries extends React.Component {
             <h5 className="info">
               Monthly interest plus 1% payment on principal
             </h5>
+            <h4 className="title">My Monthly Payment is: </h4>
             <hr />
             <span className="digits">${minimumDue.toFixed(2)}</span>
             <h4 className="title">Number of Payments Left:</h4>
